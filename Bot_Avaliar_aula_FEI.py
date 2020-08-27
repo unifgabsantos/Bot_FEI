@@ -25,22 +25,26 @@ class Bot():
         for x in range (0,hoje):
             try:
                 driver.find_element_by_link_text(dia[x]+" 1").click()
+                aux=1
             except:
                 print(dia[x],"já avaliado.")
+                aux=0
             lista=driver.find_elements_by_xpath("//label[@data-original-title='Muito bom']")
-            for carinha in lista:
-                try:
-                    carinha.click()
-                    sleep(1)
-                except:
-                    sleep(1)
-            lista=driver.find_elements_by_name("cadastrar")
-            for botao in lista:
-                try:
-                    botao.click()
-                    sleep(1)
-                except:
-                    sleep(1)
+            if aux==1:
+                for carinha in lista:
+                    try:
+                        carinha.click()
+                        sleep(1)
+                    except:
+                        sleep(1)
+                lista=driver.find_elements_by_name("cadastrar")
+                for botao in lista:
+                    try:
+                        botao.click()
+                        sleep(1)
+                    except:
+                        sleep(1)
+                print(dia[x],"avaliado.")
 bot=Bot()
 login,senha=pegar_conta()
 bot.avaliar(login,senha)
