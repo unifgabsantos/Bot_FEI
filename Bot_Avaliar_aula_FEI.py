@@ -24,10 +24,15 @@ class Bot():
         sleep(1)
         for x in range (0,hoje):
             try:
-                driver.find_element_by_link_text(dia[x]+" 1").click()
-                aux=1
+                try:
+                    driver.find_element_by_link_text(dia[x]+" 1").click()
+                    aux=1
+                except:
+                    driver.find_element_by_link_text(dia[x]+" 2").click()
+                    aux=1
             except:
                 print(dia[x],"já avaliado.")
+                sleep(1)
                 aux=0
             lista=driver.find_elements_by_xpath("//label[@data-original-title='Muito bom']")
             if aux==1:
