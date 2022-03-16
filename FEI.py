@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from datetime import datetime
+from os import system
 def getDay():
     date = datetime.today()
     day = (int(date.weekday())*2)+1
@@ -28,7 +29,10 @@ class Bot():
     def __init__(self,account:dict) -> None:
         self.account = account
         try:
-            self.driver = webdriver.Chrome("./Resources/chromedriver.exe")
+            options = webdriver.ChromeOptions()
+            options.headless = True
+            options.add_experimental_option("excludeSwitches", ["enable-logging"])
+            self.driver = webdriver.Chrome("./Resources/chromedriver.exe",options=options)
         except:
             print("\nBaixe o chrome driver que tenha a mesma versão do chrome da sua maquina e coloque em dentro da pasta Resources\n\nSite:https://chromedriver.chromium.org/downloads\n")
             exit(0)
@@ -45,8 +49,9 @@ class Bot():
             driver.get("https://interage.fei.org.br/secureserver/portal/graduacao/sala-dos-professores/aulas/presenca")
             sleep(1)
             driver.find_element_by_id(f"cadastrar-{getDay()}").click()
-            print("OK")
-            sleep(1)
+            sleep(0.5)
             driver.close()
+            print(f"{account['Username']} - OK")
         except:
-            print("Esse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com ")
+            print(f"{account['Username']} - ERROR")
+            print("\nEsse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com\n")
