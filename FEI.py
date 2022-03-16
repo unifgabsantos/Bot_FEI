@@ -1,6 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from datetime import datetime
+def getDay():
+    date = datetime.today()
+    day = (int(date.weekday())*2)+1
+    if(int(date.strftime('%H'))>21):
+        day+=1
+    return day
 def getAccounts()->list:
     accounts = []
     try:
@@ -29,13 +36,17 @@ class Bot():
         driver = self.driver
         account = self.account
         driver.get("https://interage.fei.org.br/secureserver/portal")
-        sleep(5)
+        sleep(0.5)
         try:
             driver.find_element_by_id("Usuario").send_keys(account['Username'])
             driver.find_element_by_id("Senha").send_keys(account['Password'])
             driver.find_element_by_id("btn-login").click()
             sleep(0.5)
             driver.get("https://interage.fei.org.br/secureserver/portal/graduacao/sala-dos-professores/aulas/presenca")
-            sleep(1.5)
+            sleep(1)
+            driver.find_element_by_id(f"cadastrar-{getDay()}").click()
+            print("OK")
+            sleep(1)
+            driver.close()
         except:
             print("Esse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com ")
