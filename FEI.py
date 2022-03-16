@@ -1,8 +1,13 @@
+from os import system
+try:
+    from selenium import webdriver
+except:
+    system("pip install selenium")
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from datetime import datetime
-from os import system
+
 def getDay():
     date = datetime.today()
     day = (int(date.weekday())*2)+1
