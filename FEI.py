@@ -34,8 +34,8 @@ class Bot():
             driver.find_element_by_id("Usuario").send_keys(account['Username'])
             driver.find_element_by_id("Senha").send_keys(account['Password'])
             driver.find_element_by_id("btn-login").click()
+            sleep(0.5)
+            driver.get("https://interage.fei.org.br/secureserver/portal/graduacao/sala-dos-professores/aulas/presenca")
+            sleep(1.5)
         except:
             print("Esse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com ")
-        sleep(1)
-        driver.get("https://interage.fei.org.br/secureserver/portal/graduacao/sala-dos-professores/aulas/presenca")
-        sleep(3)
