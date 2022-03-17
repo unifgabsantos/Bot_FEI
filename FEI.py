@@ -11,7 +11,7 @@ from datetime import datetime
 def getDay():
     date = datetime.today()
     day = (int(date.weekday())*2)+1
-    if(int(date.strftime('%H'))>21):
+    if(int(date.strftime('%H'))>=21):
         day+=1
     return day
 def getAccounts()->list:
