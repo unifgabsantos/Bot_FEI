@@ -59,6 +59,7 @@ class Bot():
                 for i in range(1,13):
                     try:
                         driver.find_element_by_id(f"cadastrar-{i}").click()
+                        sleep(0.1)
                         break 
                     except:
                         None
