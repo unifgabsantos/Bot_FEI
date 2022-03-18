@@ -11,7 +11,7 @@ from datetime import datetime
 def getDay():
     date = datetime.today()
     day = (int(date.weekday())*2)+1
-    if(int(date.strftime('%H'))>=21):
+    if(int(date.strftime('%H'))>21):
         day+=1
     return day
 def getAccounts()->list:
@@ -53,7 +53,15 @@ class Bot():
             sleep(0.5)
             driver.get("https://interage.fei.org.br/secureserver/portal/graduacao/sala-dos-professores/aulas/presenca")
             sleep(1)
-            driver.find_element_by_id(f"cadastrar-{getDay()}").click()
+            try:
+                driver.find_element_by_id(f"cadastrar-{getDay()}").click()
+            except:
+                for i in range(1,13):
+                    try:
+                        driver.find_element_by_id(f"cadastrar-{i}").click()
+                        break 
+                    except:
+                        None
             sleep(0.5)
             driver.close()
             print(f"{account['Username']} - OK")
