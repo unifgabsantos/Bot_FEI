@@ -56,7 +56,7 @@ class Bot():
             try:
                 driver.find_element_by_id(f"cadastrar-{getDay()}").click()
             except:
-                for i in range(1,13):
+                for i in range(1,20):
                     try:
                         driver.find_element_by_id(f"cadastrar-{i}").click()
                         sleep(0.1)
