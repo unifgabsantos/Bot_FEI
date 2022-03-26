@@ -13,6 +13,8 @@ def getDay():
     day = (int(date.weekday())*2)+1
     if(int(date.strftime('%H'))>=21):
         day+=1
+    elif(int(date.strftime('%H'))>=11 and int(date.strftime('%H'))<14):
+        day+=1
     return day
 def getAccounts()->list:
     accounts = []
