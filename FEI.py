@@ -2,7 +2,7 @@ from os import system
 try:
     from selenium import webdriver
 except:
-    system("pip install selenium")
+    system("pip install selenium==4.1")
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
@@ -70,4 +70,3 @@ class Bot():
             print(f"{account['Username']} - OK")
         except:
             print(f"{account['Username']} - ERROR")
-            print("\nEsse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com\n")
