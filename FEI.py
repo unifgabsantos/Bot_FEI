@@ -2,7 +2,7 @@ from os import system
 try:
     from selenium import webdriver
 except:
-    system("pip install selenium==4.1")
+    system("pip install selenium")
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
@@ -40,6 +40,7 @@ class Bot():
             options.headless = True
             options.add_experimental_option("excludeSwitches", ["enable-logging"])
             self.driver = webdriver.Chrome("./Resources/chromedriver.exe",options=options)
+            self.start()
         except:
             print("\nBaixe o chrome driver que tenha a mesma versão do chrome da sua maquina e coloque em dentro da pasta Resources\n\nSite:https://chromedriver.chromium.org/downloads\n")
             exit(0)
@@ -57,8 +58,8 @@ class Bot():
             sleep(1)
             try:
                 driver.find_element_by_id(f"cadastrar-{getDay()}").click()
-            except:
-                for i in range(1,20):
+            except:            
+                for i in range(1,25):
                     try:
                         driver.find_element_by_id(f"cadastrar-{i}").click()
                         sleep(0.1)
@@ -70,3 +71,4 @@ class Bot():
             print(f"{account['Username']} - OK")
         except:
             print(f"{account['Username']} - ERROR")
+            print("\nEsse erro não deveria acontecer, mas se aconteceu me envie um e-mail: gabriel.lopessb@gmail.com\n")
